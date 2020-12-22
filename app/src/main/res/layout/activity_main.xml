@@ -11,7 +11,6 @@
     <FrameLayout
         android:id="@+id/bg_container"
         android:layout_width="300dp"
-        android:background="@color/black"
         android:layout_gravity="center"
         android:layout_height="wrap_content">
         <com.example.expandablespinner.ExpandableSpinner
@@ -19,6 +18,18 @@
             android:id="@+id/mainSpinner"
             android:layout_width="300dp"
             android:layout_height="wrap_content" />
+    </FrameLayout>
+
+    <FrameLayout
+        android:id="@+id/list_container"
+        android:layout_width="match_parent"
+        android:layout_gravity="center"
+        android:layout_height="wrap_content">
+    <ListView
+        android:id="@+id/list_view"
+        android:layout_gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
     </FrameLayout>
 
 </LinearLayout>

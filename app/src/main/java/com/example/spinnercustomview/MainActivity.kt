@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.res.Resources
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.transition.AutoTransition
 import android.transition.ChangeBounds
 import android.transition.TransitionManager
 import android.util.Log
@@ -31,7 +32,8 @@ class MainActivity : AppCompatActivity() {
         val root = findViewById<LinearLayout>(R.id.root_view)
         val listTwo = arrayListOf<String>("Ленинский", "Сталинский", "Путинский")
         val bg = findViewById<FrameLayout>(R.id.bg_container)
-
+        val listView = findViewById<ListView>(R.id.list_view)
+        val listContainer = findViewById<FrameLayout>(R.id.list_container)
         spinner.init(root,listTwo,R.layout.main_spinner_item,R.id.spinner_text_view,{ view: TextView, item: String ->
             view.text = item
         }){item ->
@@ -48,6 +50,41 @@ class MainActivity : AppCompatActivity() {
             bg.layoutParams = params
             Log.d(TAG, "onCreate: $isExpanded")
         }
+
+
+        val adapter= ArrayAdapter<String>(
+                this,
+                R.layout.main_spinner_item,
+                R.id.spinner_text_view,
+                listTwo
+        )
+
+        val tv = TypedValue()
+        val height = if(theme.resolveAttribute(android.R.attr.actionBarSize, tv, true)) {
+            TypedValue.complexToDimensionPixelSize(tv.data, resources.displayMetrics)
+        }else{
+            0
+        }
+
+        listView.adapter = adapter
+        var isExpanded = false
+        listView.setOnItemClickListener { parent, view, position, id ->
+            TransitionManager.beginDelayedTransition(root,AutoTransition())
+            val params = listContainer.layoutParams
+            if(isExpanded){
+                isExpanded = false
+                params.height = height
+            }else{
+                isExpanded = true
+                params.height = ViewGroup.LayoutParams.WRAP_CONTENT
+            }
+            listContainer.layoutParams = params
+        }
+
+
+
+
+
 //        spinner.isAnimateWidth(true,root,500)
     }
 }

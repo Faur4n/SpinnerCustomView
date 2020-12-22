@@ -9,7 +9,6 @@
         android:layout_height="match_parent"
         android:divider="@null"
         android:scrollbars="none"
-        android:background="@android:color/darker_gray"
         />
 
     <ImageView

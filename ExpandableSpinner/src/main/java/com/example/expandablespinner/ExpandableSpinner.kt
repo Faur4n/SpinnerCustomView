@@ -4,6 +4,7 @@ import android.animation.LayoutTransition
 import android.content.Context
 import android.media.Image
 import android.transition.ChangeBounds
+import android.transition.Transition
 import android.transition.TransitionManager
 import android.util.AttributeSet
 import android.util.Log
@@ -17,6 +18,7 @@ import androidx.annotation.IdRes
 import androidx.annotation.LayoutRes
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import androidx.transition.AutoTransition
 
 
 class ExpandableSpinner : FrameLayout {
@@ -59,9 +61,9 @@ class ExpandableSpinner : FrameLayout {
 
         val adapter = SpinnerAdapter(layoutId, textViewId, items){item, isChanged ->
 
-            val transition = ChangeBounds()
-            transition.duration = duration
-            TransitionManager.beginDelayedTransition(sceneRoot, transition)
+            val transition = AutoTransition()
+            transition.duration = duration/2
+            androidx.transition.TransitionManager.beginDelayedTransition(sceneRoot, transition)
 
             if (isExpanded) {
                 isExpanded = false
@@ -75,6 +77,7 @@ class ExpandableSpinner : FrameLayout {
             if(isChanged)
                 listener(item)
         }
+        adapter.hasStableIds()
 
         if (onBind != null) {
             adapter.setOnBindCallback(onBind)
@@ -95,7 +98,7 @@ class ExpandableSpinner : FrameLayout {
         layoutManager = SpinnerLinearLayoutManager(context)
         recyclerView.layoutManager = layoutManager
         recyclerView.overScrollMode = View.OVER_SCROLL_NEVER
-        
+
         val tv = TypedValue()
         minHeight = if(context.theme.resolveAttribute(android.R.attr.actionBarSize, tv, true)) {
             TypedValue.complexToDimensionPixelSize(tv.data, resources.displayMetrics)
