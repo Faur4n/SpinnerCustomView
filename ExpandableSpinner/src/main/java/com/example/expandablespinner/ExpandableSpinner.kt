@@ -1,11 +1,6 @@
 package com.example.expandablespinner
 
-import android.animation.LayoutTransition
 import android.content.Context
-import android.media.Image
-import android.transition.ChangeBounds
-import android.transition.Transition
-import android.transition.TransitionManager
 import android.util.AttributeSet
 import android.util.Log
 import android.util.TypedValue
@@ -105,6 +100,10 @@ class ExpandableSpinner : FrameLayout {
         }else{
             0
         }
+        val arrowParams = arrowView?.layoutParams as MarginLayoutParams
+        arrowParams.setMargins(0,minHeight/2,minHeight/2,0)
+        arrowView?.layoutParams = arrowParams
+
         collapseRecycler(recyclerView,minHeight)
 
     }

@@ -12,7 +12,8 @@
         android:id="@+id/bg_container"
         android:layout_width="300dp"
         android:layout_gravity="center"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        >
         <com.example.expandablespinner.ExpandableSpinner
             android:layout_gravity="center"
             android:id="@+id/mainSpinner"
