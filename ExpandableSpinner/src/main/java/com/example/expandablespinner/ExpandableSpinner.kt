@@ -17,8 +17,6 @@ import androidx.annotation.IdRes
 import androidx.annotation.LayoutRes
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.expandablespinner.databinding.SpinnerLayoutBinding
-import com.google.android.material.transition.MaterialFadeThrough
 
 
 class ExpandableSpinner : FrameLayout {
