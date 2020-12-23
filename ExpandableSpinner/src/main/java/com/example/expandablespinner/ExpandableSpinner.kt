@@ -46,7 +46,7 @@ class ExpandableSpinner : FrameLayout {
     }
 
     fun <T>init(root: ViewGroup,
-                items: ArrayList<T>,
+                items: List<T>,
                 @LayoutRes layoutId : Int,
                 @IdRes textViewId : Int,
                 onBind: ((view: TextView,item : T) -> Unit)? = null,
@@ -54,7 +54,7 @@ class ExpandableSpinner : FrameLayout {
     ){
         sceneRoot = root
 
-        val adapter = SpinnerAdapter(layoutId, textViewId, items){item, isChanged ->
+        val adapter = SpinnerAdapter(layoutId, textViewId, items.toMutableList()){item, isChanged ->
 
             val transition = AutoTransition()
             transition.duration = duration/2

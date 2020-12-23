@@ -80,11 +80,6 @@ class MainActivity : AppCompatActivity() {
             }
             listContainer.layoutParams = params
         }
-
-
-
-
-
 //        spinner.isAnimateWidth(true,root,500)
     }
 }

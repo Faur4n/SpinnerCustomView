@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.RecyclerView
 internal class SpinnerAdapter<T>(
         @LayoutRes val layoutId: Int,
         @IdRes val textViewId: Int,
-        val items: ArrayList<T>,
+        val items: MutableList<T>,
         val listener: (item: T, isChanged: Boolean) -> Unit
 ) : RecyclerView.Adapter<SpinnerAdapter<T>.SpinnerViewHolder>() {
 
